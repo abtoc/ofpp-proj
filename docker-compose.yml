@@ -1,0 +1,17 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db:/var/lib/mysql
+  mq:
+    image: rabbitmq
+    ports:
+      - "5672:5672"
+volumes:
+  db:
+    driver: local
