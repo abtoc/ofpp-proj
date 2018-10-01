@@ -2,6 +2,7 @@ version: '2'
 services:
   db:
     image: mysql:5.7
+    container_name: ofpp_db
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - "3306:3306"
@@ -12,6 +13,9 @@ services:
       - ./db/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
   mq:
     image: rabbitmq
+    container_name: ofpp_mq
+    depends_on:
+      - db
     ports:
       - "5672:5672"
 volumes:
